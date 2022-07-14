@@ -3,12 +3,17 @@ DROP DATABASE IF EXISTS goods;
 CREATE DATABASE goods;
 
 USE goods;
-
 CREATE TABLE nha_cung_cap (
     ma_nha_cung_cap INT PRIMARY KEY,
     ten_nha_cung_cap VARCHAR(30) NOT NULL,
     dia_chi VARCHAR(50) NOT NULL,
-    so_dien_thoai VARCHAR(20) NOT NULL
+    so_dien_thoai varchar (20)
+);
+
+CREATE TABLE so_dien_thoai_nha_cung_cap (
+    so_dien_thoai VARCHAR(20) not null primary key,
+    ma_nha_cung_cap int,
+    foreign key (ma_nha_cung_cap) references nha_cung_cap (ma_nha_cung_cap)
 );
 
 CREATE TABLE don_dat_hang (
