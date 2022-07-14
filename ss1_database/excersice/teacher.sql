@@ -11,8 +11,8 @@ CREATE TABLE teacher (
     nation VARCHAR(55),
     PRIMARY KEY (id_teacher)
 );
-insert into teacher(name,age,nation) 
-value ("ngan",15,"VN");
+INSERT INTO teacher(name,age,nation) 
+VALUE ("ngan",15,"VN");
 
 
 CREATE TABLE class (
@@ -21,8 +21,8 @@ CREATE TABLE class (
     PRIMARY KEY (id_class)
 );
 
-insert into
- class (name_class) value ("C04");
+INSERT INTO
+ class (name_class) VALUE ("C04");
  
 CREATE TABLE student (
     id_student INT AUTO_INCREMENT,
