@@ -96,8 +96,3 @@ CREATE TABLE dich_vu (
     dich_vu_mien_phi_di_kem TEXT,
     PRIMARY KEY (ma_dich_vu)
 );
-
-
-
-
-

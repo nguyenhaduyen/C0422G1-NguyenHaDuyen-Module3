@@ -1,24 +1,37 @@
-use student_management;
+DROP DATABASE IF EXISTS student_management;
 
-create table teacher (
-id_teacher int auto_increment,
-name varchar(50),
-age int,
-nation varchar(55),
-primary key (id_teacher)
+CREATE DATABASE student_management;
+
+USE student_management;
+
+CREATE TABLE teacher (
+    id_teacher INT AUTO_INCREMENT,
+    name VARCHAR(50),
+    age INT,
+    nation VARCHAR(55),
+    PRIMARY KEY (id_teacher)
 );
 insert into teacher(name,age,nation) 
-value ("Nggu",15,"VN");
-select *
- from teacher;
+value ("ngan",15,"VN");
 
-use student_management;
-create table class (
-id_class int auto_increment,
-name_class varchar (55),
-primary key (id_class)
+
+CREATE TABLE class (
+    id_class INT AUTO_INCREMENT,
+    name_class VARCHAR(55),
+    PRIMARY KEY (id_class)
 );
+
 insert into
  class (name_class) value ("C04");
-select *
- from class;
+ 
+CREATE TABLE student (
+    id_student INT AUTO_INCREMENT,
+    name_student VARCHAR(55),
+    date_of_birth DATE,
+    PRIMARY KEY (id_student)
+);
+
+
+ 
+
+

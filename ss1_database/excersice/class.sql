@@ -5,3 +5,4 @@ primary key (id_class)
 );
 insert into class (name_class) value ("C04");
 select * from class;
+insert into student_management.student (name) value ("C05");
