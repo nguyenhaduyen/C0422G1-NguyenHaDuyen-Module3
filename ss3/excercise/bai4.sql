@@ -47,14 +47,14 @@ SELECT o.customer_id, o.order_date,o.order_total_price
 FROM `order` o;
 
 -- Hiển thị danh sách các khách hàng đã mua hàng, và danh sách sản phẩm được mua bởi các khách
-select c.customer_name, p.product_name
-from customer c
-join `order` o
-on c.customer_id = o.customer_id
-join order_detail od
-on o.order_id = od.order_id
-join product p
-on od.product_id = p.product_id;
+SELECT c.customer_name, p.product_name
+FROM customer c
+JOIN `order` o
+ON c.customer_id = o.customer_id
+JOIN order_detail od
+ON o.order_id = od.order_id
+JOIN product p
+ON od.product_id = p.product_id;
     
 --  Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào
 SELECT 
@@ -69,10 +69,10 @@ WHERE
 -- Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn (giá một hóa đơn được tính bằng tổng giá bán của từng loại mặt hàng xuất hiện trong hóa đơn.
 --  Giá bán của từng loại được tính = odQTY*pPrice)
 ;
-select o.order_id, o.order_date, sum((p.product_price*od.order_quanity)) as price
-from `order` o join order_detail od 
-on o.order_id = od.order_id
-join product p
-on od.product_id = p.product_id
-group by o.order_id;
+SELECT o.order_id, o.order_date, SUM((p.product_price*od.order_quanity)) AS price
+FROM `order` o JOIN order_detail od 
+ON o.order_id = od.order_id
+JOIN product p
+ON od.product_id = p.product_id
+GROUP BY o.order_id;
 
