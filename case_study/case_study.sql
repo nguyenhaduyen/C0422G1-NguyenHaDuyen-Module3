@@ -44,14 +44,13 @@ CREATE TABLE nhan_vien (
 );
 
 CREATE TABLE loai_khach (
-    ma_loai_khach INT,
+    ma_loai_khach INT auto_increment,
     ten_loai_khach VARCHAR(45),
     PRIMARY KEY (ma_loai_khach)
 );
 
 CREATE TABLE khach_hang (
     ma_khach_hang INT AUTO_INCREMENT,
-    ma_loai_khach INT,
     ho_ten VARCHAR(45) NOT NULL,
     ngay_sinh DATE NOT NULL,
     gioi_tinh BIT(1) NOT NULL,
@@ -59,6 +58,7 @@ CREATE TABLE khach_hang (
     so_dien_thoai VARCHAR(45) NOT NULL,
     email VARCHAR(45),
     dia_chi VARCHAR(45),
+     ma_loai_khach INT,
     PRIMARY KEY (ma_khach_hang),
     FOREIGN KEY (ma_loai_khach)
         REFERENCES loai_khach (ma_loai_khach)
@@ -82,13 +82,13 @@ CREATE TABLE dich_vu (
     dien_tich INT,
     chi_phi_thue DOUBLE NOT NULL,
     so_nguoi_toi_da INT,
-    ma_kieu_thue INT,
-    ma_loai_dich_vu INT,
     tieu_chuan_phong VARCHAR(45),
     mo_ta_tien_nghi_khac VARCHAR(45),
     dien_tich_ho_boi DOUBLE,
     so_tang INT,
     dich_vu_mien_phi_di_kem TEXT,
+      ma_kieu_thue INT,
+    ma_loai_dich_vu INT,
     PRIMARY KEY (ma_dich_vu),
     FOREIGN KEY (ma_kieu_thue)
         REFERENCES kieu_thue (ma_kieu_thue),
@@ -133,3 +133,83 @@ CREATE TABLE hop_dong_chi_tiet (
     FOREIGN KEY (ma_dich_vu_di_kem)
         REFERENCES dich_vu_di_kem (ma_dich_vu_di_kem)
 );
+
+insert into vi_tri(ten_vi_tri) values ("Quản Lý"),("Nhân Viên");
+
+insert into trinh_do (ten_trinh_do) values ("Trung Cấp"),("Cao Đẳng"),("Đại Học"),("Sau Đại Học");
+
+insert into bo_phan (ten_bo_phan) value ("Sale-Marketing"),("Hành chính"),("Phục vụ"),("Quản lý");
+
+insert into nhan_vien (ho_ten,ngay_sinh,so_cmnd,luong,so_dien_thoai,email,dia_chi,ma_vi_tri,ma_trinh_do,ma_bo_phan) 
+values ("Nguyễn Văn An","1970-11-07","456231786",10000000,"0901234121",	"annguyen@gmail.com","295 Nguyễn Tất Thành,Đà Nẵng",1,3,1),
+("Lê Văn Bình","1997-04-09","654231234",7000000,"0934212314","binhlv@gmail.com","22 Yên Bái, Đà Nẵng",1,2,2),
+("Hồ Thị Yến","1995-12-12","999231723",14000000,"0412352315","thiyen@gmail.com","K234/11 Điện Biên Phủ,Gia Lai",1,3,2),
+("Võ Công Toản","1980-04-04","123231365",17000000,"0374443232","toan0404@gmail.com","77 Hoàng Diệu, Quảng Trị",1,4,4),
+("Nguyễn Bỉnh Phát","1999-12-09","454363232",6000000,"0902341231","phatphat@gmail.com","43 Yên Bái, Đà Nẵng",2,1,1),
+("Khúc Nguyễn An Nghi","2000-11-08","964542311",7000000,"0978653213","annghi20@gmail.com","294 Nguyễn Tất Thành, Đà Nẵng",2,2,3),
+("Nguyễn Hữu Hà","1993-01-01","534323231",8000000,"0941234553","nhh0101@gmail.com","4 Nguyễn Chí Thanh, Huế",2,3,2),
+("Nguyễn Hà Đông","1989-09-03","234414123",9000000,"0642123111","donghanguyen@gmail.com","111 Hùng Vương, Hà Nội",2,4,4),
+("Tòng Hoang","1982-09-03","256781231",6000000,"0245144444","hoangtong@gmail.com","213 Hàm Nghi, Đà Nẵng",2,4,4),
+("Nguyễn Công Đạo","1994-01-08","755434343",8000000,"0988767111","nguyencongdao12@gmail.com","6 Hoà Khánh, Đồng Nai",2,3,2);
+
+INSERT INTO loai_khach (ten_loai_khach) VALUE ("Diamond"),("Platinium"),("Gold"),("Silver"),("Member");
+
+INSERT INTO khach_hang (ho_ten,ngay_sinh,gioi_tinh,so_cmnd,so_dien_thoai,email,dia_chi,ma_loai_khach) 
+VALUE ("Nguyễn Thị Hào","1970-11-07",0,"643431213","0945423362","thiHao07@gmail.com","23 Nguyễn Hoàng, Đà Nẵng",5),
+("Phạm XUÂN Diệu","1992-08-08",1,"865342123","0954333333","xuAndieu92@gmaiL.com","K77/22 Thái PhiÊn, Quảng Trị",3),
+("Trương Đình Nghệ","1990-02-27",1,"488645199","0373213122","NGHenhan2702@gMail.com","K323/12 Ông Ích Khiêm, Vinh",1),
+("Dương Văn Quan","1981-07-08",1,"543432111","0490039241","duongqUAN@gmail.com","K453/12 Lê Lợi, Đà Nẵng",1),
+("HoÀng Trần Nhi Nhi","1995-12-09",0,"795453345","0312345678","nhiNhi123@gmail.COM","224 Lý THái Tổ, Gia LAi",4),
+("Tôn Nữ Mộc CHâu","2005-12-06",0,"732434215","0988888844","tonnuchau@gmaIl.com","37 YÊN Thế, Đà NẵnG",4),
+("NguyỄn Mỹ Kim","1984-04-08",0,"856453123","0912345698","KIMcUong84@gmail.com","K123/45 Lê Lợi, Hồ Chí Minh",1),
+("Nguyễn Thị Hào","1999-04-08",0,"965656433","0763212345","haohao99@GMAiL.com","55 Nguyễn Văn Linh, Kon Tum",3),
+("Trần ĐẠi Danh","1994-07-01",1,"432341235","0643343433","danhhai99@gmail.cOM","24 Lý Thường Kiệt, QuẢng Ngãi",1),
+("Nguyễn Tâm Đắc","1989-07-01",1,"344343432","0987654321","dactam@gmail.com","22 Ngô QuyềN,ĐÀ Nẵng",2);
+
+INSERT INTO kieu_thue(ten_kieu_thue) VALUE ("year"),("month"),("day"),("hour");
+
+INSERT INTO loai_dich_vu(ten_loai_dich_vu) VALUE ("Villa"),("House"),("Room");
+
+INSERT INTO dich_vu (ten_dich_vu,dien_tich,chi_phi_thue,so_nguoi_toi_da,tieu_chuan_phong,mo_ta_tien_nghi_khac,dien_tich_ho_boi,so_tang,dich_vu_mien_phi_di_kem,ma_kieu_thue,ma_loai_dich_vu)
+VALUE ("Villa Beach Front",25000,1000000,10,"vip","Có hồ bơi",500,4,NULL,3,1),
+("HoUse Princess 01",14000,5000000,7,"VIP","Có thêm bếp nướng",null,3,nulL,2,2),
+("ROOM TWIn 01",5000,1000000,2,"NORMAL","Có tivi",Null,null,"1 XE MÁY, 1 Xe đạp",4,3),
+("Villa NO BEACh Front",22000,9000000,8,"NORMAL","CÓ HỒ bơi",300,3,null,3,1),
+("HOUSE PRINCESS 02",10000,4000000,5,"noRMAL","CÓ THÊM BẾp nướng",null,2,null,3,2),
+("Room TWIN 02",3000,900000,2,"normal","Có TIVI",NULL,NULl,"1 Xe Máy",4,3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
