@@ -124,9 +124,9 @@ CREATE TABLE dich_vu_di_kem (
 
 CREATE TABLE hop_dong_chi_tiet (
     ma_hop_dong_chi_tiet INT AUTO_INCREMENT,
+	so_luong INT NULL,
     ma_hop_dong INT,
     ma_dich_vu_di_kem INT,
-    so_luong INT NULL,
     PRIMARY KEY (ma_hop_dong_chi_tiet),
     FOREIGN KEY (ma_hop_dong)
         REFERENCES hop_dong (ma_hop_dong),
@@ -178,6 +178,69 @@ VALUE ("Villa Beach Front",25000,1000000,10,"vip","Có hồ bơi",500,4,NULL,3,1
 ("HOUSE PRINCESS 02",10000,4000000,5,"noRMAL","CÓ THÊM BẾp nướng",null,2,null,3,2),
 ("Room TWIN 02",3000,900000,2,"normal","Có TIVI",NULL,NULl,"1 Xe Máy",4,3);
 
+insert into dich_vu_di_kem (ten_dich_vu_di_kem,gia,don_vi,trang_thai) 
+value ("Karaoke",10000,"giờ","tiện nghi,hiện dại"),
+("Thuê xe máy",10000,"chiếc","hỏng 1 xe"),
+("Thuê xe đạp",	20000,"chiếc","tốt"),
+("Buffet buổi sáng",15000,"suất","đầy đủ đồ ăn,tráng miệng"),
+("Buffet buổi trưa",90000,"suất","đầy đủ đồ ăn,tráng miệng"),
+("Buffet buổi tối",16000,"suất"," đầy đủ đồ ăn, tráng miệng");
+
+INSERT INTO hop_dong (ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,ma_nhan_vien,ma_khach_hang,ma_dich_vu)
+VALUE ("2020-12-08","2020-12-08",0,3,1,3),
+("2020-07-14","2020-07-21",	200000,	7,3,1),
+("2021-03-15","2021-03-17",	50000,3,4,2),
+("2021-01-14","2021-01-18",100000,7,5,5),
+("2021-07-14","2021-07-15",0,7,	2,6),
+("2021-06-01","2021-06-03",	0,7,7,6),
+("2021-09-02","2021-09-05",100000,7,4,4),
+("2021-06-17","2021-06-18",	150000,3,4,	1),
+("2020-11-19","2020-11-19",	0,3,4,3),
+("2021-04-12","2021-04-14",0,10,3,5),
+("2021-04-25","2021-04-25",0,2,	2,1),
+("2021-05-25","2021-05-27",0,7,10,1);
+
+INSERT INTO hop_dong_chi_tiet(so_luong,ma_hop_dong,ma_dich_vu_di_kem)
+VALUE (5,2,4),
+(8,2,5),
+(15,2,6),
+(1,3,1),
+(11,3,2),
+(1,1,3),
+(2,1,2),
+(2,12,2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là
+-- một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 kí tự.
+
+select *
+from nhan_vien nv
+where nv.ho_ten like ("% H");
 
 
 
