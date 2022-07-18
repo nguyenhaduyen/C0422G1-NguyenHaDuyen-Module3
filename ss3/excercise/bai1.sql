@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS quan_li_sinh_vien1;
+DROP DATABASE IF EXISTS quan_li_sinh_vien;
 
-CREATE DATABASE quan_li_sinh_vien1;
+CREATE DATABASE quan_li_sinh_vien;
 
-USE quan_li_sinh_vien1;
+USE quan_li_sinh_vien;
 
 CREATE TABLE class (
     class_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,12 +14,8 @@ CREATE TABLE class (
 INSERT INTO class (class_name, start_date,`status`) 
 VALUES ("A1", "2008-12-20",1),("A2","2008-12-22",1),("B3", CURRENT_DATE,0);
 
-SELECT 
-    *
-FROM
-    class
-WHERE
-    class_name = 'A1';
+SELECT *
+FROM class WHERE class_name = "A1";
 
 CREATE TABLE student (
     student_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,25 +38,10 @@ FROM student;
 SELECT *
 FROM student WHERE `status` = TRUE;
 
-SELECT 
-    S.student_id, S.student_name, C.class_name AS a
-FROM
-    student S
-        JOIN
-    class c ON S.class_id = C.class_id
-WHERE
-    C.class_name = 'A1';
+SELECT S.student_id, S.student_name, C.class_name as a
+FROM student S  JOIN  class c on S.class_id = C.class_id
+WHERE C.class_name = "A1";
 
-SELECT 
-    S.student_id, S.student_name, Sub.sub_name, M.mark
-FROM
-    Student S
-        JOIN
-    Mark M ON S.student_id = M.student_id
-        JOIN
-    Subject Sub ON M.sub_id = Sub.sub_id
-WHERE
-    Sub.sub_name = 'CF';
 
 CREATE TABLE subject (
     sub_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,12 +53,8 @@ CREATE TABLE subject (
 INSERT INTO subject (sub_name,credit,`status`) 
 VALUES ("CF",5,1),("C",6,1),("HDJ",5,1),("RDBMS",10,1);
 
-SELECT 
-    *
-FROM
-    subject
-WHERE
-    credit < 10;
+SELECT *
+FROM subject WHERE credit <10;
 
 CREATE TABLE mark (
     mark_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -91,45 +68,31 @@ CREATE TABLE mark (
         REFERENCES student (student_id)
 ); 
 
-INSERT INTO  mark (sub_id,student_id,mark,exam_times) 
-VALUES (1,1,8,1),(1,2,10,2),(2,1,12,1);
+INSERT INTO  mark (sub_id,student_id,mark,exam_times) VALUES (1,1,8,1),(1,2,10,2),(2,1,12,1);
+SELECT S.student_id, S.student_name, Sub.sub_name, M.mark
+FROM Student S  left join Mark M on S.student_id = M.student_id  left join  Subject Sub on M.sub_id = Sub.sub_id
+WHERE Sub.sub_name = "CF";
 
 -- Hiển thị tất cả các sinh viên có tên bắt đầu bảng ký tự ‘h’
-SELECT 
-    *
-FROM
-    student s
-WHERE
-    s.student_name LIKE 'H%';
+SELECT *
+FROM student s
+WHERE s.student_name like "H%";
 
 -- Hiển thị các thông tin lớp học có thời gian bắt đầu vào tháng 12.
-SELECT 
-    *
-FROM
-    class c
-WHERE
-    MONTH(c.start_date) = 12;
+SELECT *
+FROM class c
+WHERE month(c.start_date)=12;
 
 -- Hiển thị tất cả các thông tin môn học có credit trong khoảng từ 3-5.
-SELECT 
-    *
-FROM
-    subject s
-WHERE
-    s.credit BETWEEN 3 AND 5; 
-
+SELECT *
+FROM subject s
+WHERE s.credit BETWEEN 3 AND 5; 
 -- Thay đổi mã lớp(ClassID) của sinh viên có tên ‘Hung’ là 2.
 SET sql_safe_updates = 0;
-UPDATE student 
-SET 
-    class_id = 2
-WHERE
-    student_name = 'Hung';
+UPDATE student SET class_id = 2 WHERE student_name = "Hung";
 SET sql_safe_updates = 1;
-SELECT 
-    *
-FROM
-    student;
+SELECT *
+FROM student;
 
 -- Hiển thị các thông tin: StudentName, SubName, Mark. Dữ liệu sắp xếp theo điểm thi (mark) giảm dần, nếu trùng sắp theo tên tăng dần.
 SELECT 
@@ -139,5 +102,38 @@ FROM
         JOIN
     mark m ON s.student_id = m.student_id
         JOIN
-   SUBJECT sub ON m.sub_id = sub.sub_id
+    subject sub ON m.sub_id = sub.sub_id
 ORDER BY m.mark , m.mark DESC;
+
+
+-- Hiển thị số lượng sinh viên ở từng nơi 
+select count(s.student_id)as so_luong_hoc_vien, s.address
+from student s
+group by s.address;
+
+-- Tính điểm trung bình các môn học của mỗi học viên
+select avg(m.mark),s.student_id,s.student_name
+from student s
+left join mark m
+on s.student_id = m.student_id
+group by s.student_id;
+
+-- Hiển thị những bạn học viên co điểm trung bình các môn học lớn hơn 15
+select s.student_name, avg (m.mark)
+from student s
+inner join mark m
+on  s.student_id = m.student_id
+group by s.student_id
+having avg(m.mark) >15;
+
+-- Hiển thị thông tin các học viên có điểm trung bình lớn nhất.
+select s.student_name, avg (m.mark)
+from student s
+inner join mark m
+on  s.student_id = m.student_id
+group by s.student_id
+HAVING AVG(m.mark) >= ALL (SELECT AVG(mark) FROM mark GROUP BY student_id);
+
+
+
+
