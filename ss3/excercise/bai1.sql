@@ -82,16 +82,19 @@ WHERE s.student_name like "H%";
 SELECT *
 FROM class c
 WHERE month(c.start_date)=12;
+
 -- Hiển thị tất cả các thông tin môn học có credit trong khoảng từ 3-5.
 SELECT *
 FROM subject s
 WHERE s.credit BETWEEN 3 AND 5; 
+
 -- Thay đổi mã lớp(ClassID) của sinh viên có tên ‘Hung’ là 2.
 SET sql_safe_updates = 0;
 UPDATE student SET class_id = 2 WHERE student_name = "Hung";
 SET sql_safe_updates = 1;
 SELECT *
 FROM student;
+
 -- Hiển thị các thông tin: StudentName, SubName, Mark. Dữ liệu sắp xếp theo điểm thi (mark) giảm dần, nếu trùng sắp theo tên tăng dần.
 SELECT 
     s.student_name, sub.sub_name, m.mark
