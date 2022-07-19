@@ -103,7 +103,7 @@ FROM
     mark m ON s.student_id = m.student_id
         JOIN
     subject sub ON m.sub_id = sub.sub_id
-ORDER BY m.mark , m.mark DESC;
+ORDER BY m.mark desc, s.student_name;
 
 
 -- Hiển thị số lượng sinh viên ở từng nơi 
