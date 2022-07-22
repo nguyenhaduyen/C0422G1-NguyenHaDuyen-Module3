@@ -1,0 +1,34 @@
+
+body {
+    margin: 0;
+    border: 0;
+    background: url('https://1.bp.blogspot.com/-hN0NCoAmEDY/X8z1OcRjXmI/AAAAAAAAlc0/hHqbHzqOPhIABiVomzpYacPeEufV816QQCNcBGAsYHQ/s0/hinh-nen-may-cuc-dep.jpg'), 100px,100px, repeat;
+}
+p {
+    font-size: 100%;
+    width: 70%;
+    height: 100%;
+    margin: auto;
+}
+h4{
+    text-align: center;
+    color: rebeccapurple;
+}
+.a{
+    display: inline-block;
+    margin-top: 50px;
+}
+h1 {
+    background-color: palevioletred;
+    text-align: center;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    width: 100%;
+}
+.quay-lai{
+    text-decoration: none;
+}
+.return{
+    width: 100%;
+}
