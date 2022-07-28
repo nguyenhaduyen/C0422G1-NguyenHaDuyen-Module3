@@ -27,11 +27,11 @@
 
 <form action="calculate" method="post">
     <div class="calculate">
-    <h2>Product Discount Calculator</h2>
-    <input type="text" name="description" placeholder="product description" size="30px">
-    <input type="text" name="list price" placeholder="list price" size="30px">
-    <input type="text" name="discount" placeholder="Discount Percent" size="30px">
-    <button type="submit"> Calculate Discount</button>
+        <h2>Product Discount Calculator</h2>
+        <input type="text" name="description" placeholder="product description" size="30px">
+        <input type="text" name="list price" placeholder="list price" size="30px">
+        <input type="text" name="discount" placeholder="Discount Percent" size="30px">
+        <button type="submit"> Calculate Discount</button>
     </div>
 </form>
 <h2>Luong chiet khau la: ${discountAmount}</h2>
