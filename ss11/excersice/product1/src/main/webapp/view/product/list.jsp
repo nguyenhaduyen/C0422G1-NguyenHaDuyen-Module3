@@ -21,20 +21,21 @@
 
 
 <div class="row">
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="col-lg-5 container-fluid">
+    <nav class="navbar navbar-expand-lg bg-light p-0">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4 container-fluid">
             <a class="navbar-brand" href="/product?action=add">Add new product</a>
         </div>
         <div class="col-lg-3"></div>
         <div class="col-lg-4 collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex" role="search">
+            <form class="d-flex mt-3" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">
                 <button class="btn btn-outline-success" type="submit" name="action" value="findByName">Search</button>
             </form>
         </div>
     </nav>
 </div>
-<table class="table table table-bordered border-primary">
+<table class="table table table-bordered border-primary mt-3">
     <thead>
     <tr>
         <th scope="col">id</th>
@@ -42,6 +43,8 @@
         <th scope="col">Gia san pham</th>
         <th scope="col">Mo ta san pham</th>
         <th scope="col">Noi san xuat</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
     </tr>
     </thead>
 
@@ -54,22 +57,25 @@
             <td>${product.description}</td>
             <td>${product.madeIn}</td>
             <td>
-                <button><a href="product?action=update&id=${product.id}">update</a></button>
+                <a href="product?action=update&id=${product.id}">
+                    <button type="button" class="btn btn-primary">
+                        Update
+                    </button>
+                </a>
             </td>
             <td>
-                <!-- Button trigger modal -->
+
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal${product.id}">
                     Delete
                 </button>
-
-                <!-- Modal -->
                 <div class="modal fade" id="exampleModal${product.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"><h3 class="text-dark">Xác nhận xóa hay không?</h3></h5>
+                                <h5 class="modal-title" id="exampleModalLabel"><h3 class="text-dark">Xác nhận xóa hay
+                                    không?</h3></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
