@@ -7,13 +7,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
 <html>
 <head>
     <title>Trang them moi thong tin</title>
 </head>
 <body>
 <h2>Trang them moi thong tin</h2>
-<a href="/product">Quay lai trang list</a>
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/product">Quay lại trang list</a>
+    </li>
+</ul>
 <form action="/product?action=add" method="post">
     <table border="1px">
         <tr>
@@ -41,5 +46,6 @@
         </tr>
     </table>
 </form>
+<script src="/bootstrap/js/bootstrap.js"/>
 </body>
 </html>

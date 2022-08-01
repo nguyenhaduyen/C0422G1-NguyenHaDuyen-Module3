@@ -3,6 +3,7 @@ package controllers;
 import model.Product;
 import service.IProductService;
 import service.impl.ProductService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -26,7 +27,8 @@ public class ProductServlet extends HttpServlet {
             case "update":
                 showFormUpdate(request, response);
                 break;
-            case "delete": delete(request,response);
+            case "delete":
+                delete(request, response);
                 break;
             case "findByName":
                 findByName(request, response);
@@ -50,8 +52,6 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "update":
                 saveFormUpdate(request, response);
-                break;
-            case "delete":
                 break;
         }
     }
@@ -119,30 +119,8 @@ public class ProductServlet extends HttpServlet {
         String description = request.getParameter("description");
         String madeIn = request.getParameter("madeIn");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/product/update.jsp");
-        Product product = new Product(id,name,price,description,madeIn);
-        productService.update(id,product);
-            try {
-                requestDispatcher.forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-    private void findByName(HttpServletRequest request, HttpServletResponse response) {
-        String name = request.getParameter("name");
-        Product product = productService.findByName(name);
-        RequestDispatcher requestDispatcher;
-
-        if (product == null) {
-            requestDispatcher = request.getRequestDispatcher("view/error.jsp");
-        } else {
-            request.setAttribute("product", product);
-            requestDispatcher = request.getRequestDispatcher("view/product/findByName.jsp");
-        }
-
+        Product product = new Product(id, name, price, description, madeIn);
+        productService.update(id, product);
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -151,13 +129,34 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    private void delete(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        productService.delete(id);
-        showListProduct(request,response);
+
+    private void findByName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        List <Product> product = productService.findByName(name);
+        RequestDispatcher requestDispatcher;
+        if (product == null) {
+            requestDispatcher = request.getRequestDispatcher("view/error.jsp");
+        } else {
+            request.setAttribute("name", name);
+            request.setAttribute("product", product);
+            requestDispatcher = request.getRequestDispatcher("view/product/list.jsp");
+        }
+        try {
+            requestDispatcher.forward(request, response);
+
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        productService.delete(id);
+        showListProduct(request, response);
+    }
 }
 
 

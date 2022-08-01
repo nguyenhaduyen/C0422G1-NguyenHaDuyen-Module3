@@ -14,7 +14,6 @@ public class ProductRepository implements IProductRepository {
         productList.add(new Product(2, "xa phong", 25000, "780ml", "VN"));
         productList.add(new Product(3, "dau an", 45000, "1 li", "VN"));
         productList.add(new Product(4, "dau goi", 30000, "650ml", "VN"));
-
     }
 
     @Override
@@ -31,18 +30,18 @@ public class ProductRepository implements IProductRepository {
     public void update(int id, Product product) {
         for (int i = 0; i < productList.size(); i++) {
             if (id == productList.get(i).getId()) {
-               productList.get(i).setId(id);
-               productList.get(i).setNameOfProduct(product.getNameOfProduct());
-               productList.get(i).setPrice(product.getPrice());
-               productList.get(i).setDescription(product.getDescription());
-               productList.get(i).setMadeIn(product.getMadeIn());
+                productList.get(i).setId(id);
+                productList.get(i).setNameOfProduct(product.getNameOfProduct());
+                productList.get(i).setPrice(product.getPrice());
+                productList.get(i).setDescription(product.getDescription());
+                productList.get(i).setMadeIn(product.getMadeIn());
             }
         }
     }
 
     @Override
     public void delete(int id) {
-        for (int i = 0; i <productList.size() ; i++) {
+        for (int i = 0; i < productList.size(); i++) {
             if (id == productList.get(i).getId()) {
                 productList.remove(productList.get(i));
             }
@@ -51,7 +50,7 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public Product findById(int id) {
-        for (int i = 0; i <productList.size() ; i++) {
+        for (int i = 0; i < productList.size(); i++) {
             if (id == productList.get(i).getId()) {
                 return productList.get(i);
             }
@@ -60,12 +59,13 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findByName(String name) {
-        for (int i = 0; i <productList.size() ; i++) {
-            if (productList.get(i).getNameOfProduct().equals(name)) {
-                return productList.get(i);
+    public List<Product> findByName(String name) {
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getNameOfProduct().contains(name)) {
+                products.add(productList.get(i));
             }
         }
-        return null;
+        return products;
     }
 }
