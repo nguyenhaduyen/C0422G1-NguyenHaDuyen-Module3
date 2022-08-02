@@ -27,8 +27,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean delete(int id) {
-        return userRepository.delete(id);
+    public void delete(int id) {
+         userRepository.delete(id);
     }
 
     @Override

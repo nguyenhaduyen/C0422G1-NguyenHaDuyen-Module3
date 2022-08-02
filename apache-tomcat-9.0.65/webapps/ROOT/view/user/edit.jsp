@@ -9,11 +9,10 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="view/bootstrap-5.0.2-dist/css/bootstrap.css">
 </head>
 <body>
 <a href="/user">Quay lại trang chính</a>
-<h2 style="text-align: center">Update thông tin sản phẩm</h2>
+<h2>Update thông tin sản phẩm</h2>
 <form method="post">
     <table>
         <tr>
@@ -36,11 +35,6 @@
             <td><button type="submit">Save</button></td>
         </tr>
     </table>
-
-
-
 </form>
-<script src="view/bootstrap-5.0.2-dist/jquery/jquery-3.6.0.min.js"></script>
-<script src="view/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

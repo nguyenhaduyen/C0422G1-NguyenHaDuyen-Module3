@@ -17,8 +17,8 @@ public class UserRepository implements IUserRepository {
     private final String INSERT_INTO = "insert into users(name, email, country) values(?,?,?)";
     private final String UPDATE = "update users set name =?, email =?, country =? where id =? ";
     private final String FIND_ID = "select * from users where id = ?";
-    private final String FIND_COUNTRY = "select * from users where country = ?";
-    private static final String DELETE= "delete from users where id = ?;";
+    private final String FIND_COUNTRY = "select * from users where country like?";
+    private final String DELETE= "delete from users where id = ?;";
     private final String SORT_NAME = "select * from users order by name";
 
     @Override
@@ -72,17 +72,15 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean delete(int id) {
+    public void delete(int id) {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setInt(1,id);
-            int check = preparedStatement.executeUpdate();
-            return (check == 1);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     @Override
@@ -111,7 +109,7 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_COUNTRY);
-            preparedStatement.setString(1,country);
+            preparedStatement.setString(1,"%"+country+"%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");

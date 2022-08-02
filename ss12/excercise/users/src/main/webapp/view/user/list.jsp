@@ -65,11 +65,11 @@
                     <button type="button" class="btn btn-primary">Update</button>
                 </a></th>
                 <th>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal${user.id}">
                         DELETE
                     </button>
                     <!-- The Modal -->
-                    <div class="modal" id="myModal">
+                    <div class="modal" id="myModal${user.id}">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
