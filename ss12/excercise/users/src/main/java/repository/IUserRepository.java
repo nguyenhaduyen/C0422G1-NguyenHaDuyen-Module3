@@ -11,7 +11,7 @@ public interface IUserRepository {
 
     void edit(Users users);
 
-    boolean delete(int id);
+    void delete(int id);
 
     Users findById(int id);
 

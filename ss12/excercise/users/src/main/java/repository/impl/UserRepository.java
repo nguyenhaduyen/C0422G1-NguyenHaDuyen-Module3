@@ -18,7 +18,7 @@ public class UserRepository implements IUserRepository {
     private final String UPDATE = "update users set name =?, email =?, country =? where id =? ";
     private final String FIND_ID = "select * from users where id = ?";
     private final String FIND_COUNTRY = "select * from users where country like ?;";
-    private static final String DELETE= "delete from users where id = ?;";
+    private final String DELETE = "delete from users where id = ?;";
     private final String SORT_NAME = "select * from users order by name";
 
     @Override
@@ -72,17 +72,16 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean delete(int id) {
+    public void delete(int id) {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.setInt(1,id);
-            int check = preparedStatement.executeUpdate();
-            return (check == 1);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+
     }
 
     @Override
@@ -91,7 +90,7 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ID);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -111,14 +110,14 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_COUNTRY);
-            preparedStatement.setString(1,"%"+country+"%");
+            preparedStatement.setString(1, "%" + country + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
                 String country1 = resultSet.getString("country");
-                Users users = new Users(id,name,email,country1);
+                Users users = new Users(id, name, email, country1);
                 usersList.add(users);
             }
         } catch (SQLException e) {
@@ -139,7 +138,7 @@ public class UserRepository implements IUserRepository {
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
                 String country = resultSet.getString("country");
-                Users users = new Users(id,name,email,country);
+                Users users = new Users(id, name, email, country);
                 usersList.add(users);
             }
         } catch (SQLException e) {
