@@ -9,7 +9,7 @@ public interface IUserService {
 
     void add(Users users);
 
-    void edit(int id, Users users);
+    void edit(Users users);
 
     boolean delete(int id);
 

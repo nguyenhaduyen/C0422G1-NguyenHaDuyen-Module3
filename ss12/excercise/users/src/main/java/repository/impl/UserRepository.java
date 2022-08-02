@@ -15,9 +15,9 @@ import java.util.List;
 public class UserRepository implements IUserRepository {
     private final String SELECT_ALL = "select * from users";
     private final String INSERT_INTO = "insert into users(name, email, country) values(?,?,?)";
-    private final String UPDATE = "update user set name = ?, email = ?, country = ? where id = ? ";
+    private final String UPDATE = "update users set name =?, email =?, country =? where id =? ";
     private final String FIND_ID = "select * from users where id = ?";
-    private final String FIND_COUNTRY = "select * from users where country = ?";
+    private final String FIND_COUNTRY = "select * from users where country like ?;";
     private static final String DELETE= "delete from users where id = ?;";
     private final String SORT_NAME = "select * from users order by name";
 
@@ -57,14 +57,14 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void edit(int id, Users users) {
+    public void edit(Users users) {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setString(1, users.getName());
             preparedStatement.setString(2, users.getEmail());
             preparedStatement.setString(3, users.getCountry());
-            preparedStatement.setInt(4, id);
+            preparedStatement.setInt(4, users.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,19 +111,20 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_COUNTRY);
-            preparedStatement.setString(1,"country");
+            preparedStatement.setString(1,"%"+country+"%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
-                Users users = new Users(id,name,email,country);
+                String country1 = resultSet.getString("country");
+                Users users = new Users(id,name,email,country1);
                 usersList.add(users);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  usersList;
+        return usersList;
     }
 
     @Override

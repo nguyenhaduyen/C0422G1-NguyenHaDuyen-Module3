@@ -15,6 +15,7 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -40,6 +41,7 @@ public class UserServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -57,7 +59,7 @@ public class UserServlet extends HttpServlet {
     private void sort(HttpServletRequest request, HttpServletResponse response) {
         List<Users> usersList = userService.sortByName();
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/user/list.jsp");
-        request.setAttribute("userList",usersList);
+        request.setAttribute("user",usersList);
         try {
             requestDispatcher.forward(request,response);
         } catch (ServletException e) {
@@ -96,7 +98,7 @@ public class UserServlet extends HttpServlet {
             requestDispatcher = request.getRequestDispatcher("view/error.jsp");
         } else {
             request.setAttribute("user", usersList);
-            requestDispatcher = request.getRequestDispatcher("view/user/findByCountry.jsp");
+            requestDispatcher = request.getRequestDispatcher("view/user/list.jsp");
         }
         try {
             requestDispatcher.forward(request, response);
@@ -113,7 +115,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         Users users = new Users(id, name, email, country);
-        userService.edit(id, users);
+        userService.edit(users);
         showList(request, response);
 
     }

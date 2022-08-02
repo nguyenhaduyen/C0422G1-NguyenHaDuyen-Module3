@@ -21,8 +21,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void edit(int id, Users users) {
-        userRepository.edit(id, users);
+    public void edit(Users users) {
+        userRepository.edit(users);
 
     }
 

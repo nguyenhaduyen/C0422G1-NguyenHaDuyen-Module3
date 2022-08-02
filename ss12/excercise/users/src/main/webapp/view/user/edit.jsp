@@ -9,11 +9,12 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="view/bootstrap-5.0.2-dist/css/bootstrap.css">
 </head>
 <body>
 <a href="/user">Quay lại trang chính</a>
-<h2>Update thông tin sản phẩm</h2>
-<form action="/user" method="post">
+<h2 style="text-align: center">Update thông tin sản phẩm</h2>
+<form method="post">
     <table>
         <tr>
             <th>ID</th>
@@ -32,9 +33,14 @@
             <td><input type="text" name="country" value="${user.country}"></td>
         </tr>
         <tr>
-            <td><button type="submit" name="action" value="update">Save</button></td>
+            <td><button type="submit">Save</button></td>
         </tr>
     </table>
+
+
+
 </form>
+<script src="view/bootstrap-5.0.2-dist/jquery/jquery-3.6.0.min.js"></script>
+<script src="view/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
