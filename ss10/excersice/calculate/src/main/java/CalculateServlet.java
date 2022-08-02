@@ -1,5 +1,4 @@
-import model.Calculate;
-import model.Calculate;
+import service.CalculateService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,7 +21,7 @@ public class CalculateServlet extends HttpServlet {
         String operate = request.getParameter("calculate");
         double result=0;
         try {
-            result = Calculate.calculate1(firstOperand,secondOperand,operate);
+            result = CalculateService.calculate1(firstOperand,secondOperand,operate);
         } catch (ArithmeticException e) {
             e.printStackTrace();
         }

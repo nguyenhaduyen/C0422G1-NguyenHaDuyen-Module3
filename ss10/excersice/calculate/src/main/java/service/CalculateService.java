@@ -1,17 +1,17 @@
-package model;
+package service;
 
-public class Calculate {
+public class CalculateService {
     private double first;
     private double second;
     private String operate;
 
-    public Calculate(double first, double second, String operate) {
+    public CalculateService(double first, double second, String operate) {
         this.first = first;
         this.second = second;
         this.operate = operate;
     }
 
-    public Calculate() {
+    public CalculateService() {
 
     }
 
