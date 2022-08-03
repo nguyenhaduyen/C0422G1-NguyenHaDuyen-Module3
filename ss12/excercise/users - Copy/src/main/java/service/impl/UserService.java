@@ -45,4 +45,14 @@ public class UserService implements IUserService {
     public List<Users> sortByName() {
         return userRepository.sortByName();
     }
+
+    @Override
+    public Users getUserId(int id) {
+        return userRepository.getUserId(id);
+    }
+
+    @Override
+    public void add1(Users user) {
+        userRepository.addUserStore(user);
+    }
 }

@@ -5,10 +5,7 @@ import repository.BaseRepository;
 import repository.IUserRepository;
 
 import javax.naming.spi.DirStateFactory;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class UserRepository implements IUserRepository {
     private final String UPDATE = "update users set name =?, email =?, country =? where id =? ";
     private final String FIND_ID = "select * from users where id = ?";
     private final String FIND_COUNTRY = "select * from users where country like?";
-    private final String DELETE= "delete from users where id = ?;";
+    private final String DELETE = "delete from users where id = ?;";
     private final String SORT_NAME = "select * from users order by name";
 
     @Override
@@ -76,7 +73,7 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +86,7 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ID);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -109,14 +106,14 @@ public class UserRepository implements IUserRepository {
         Connection connection = BaseRepository.getConnectDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_COUNTRY);
-            preparedStatement.setString(1,"%"+country+"%");
+            preparedStatement.setString(1, "%" + country + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
                 String country1 = resultSet.getString("country");
-                Users users = new Users(id,name,email,country1);
+                Users users = new Users(id, name, email, country1);
                 usersList.add(users);
             }
         } catch (SQLException e) {
@@ -137,12 +134,49 @@ public class UserRepository implements IUserRepository {
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
                 String country = resultSet.getString("country");
-                Users users = new Users(id,name,email,country);
+                Users users = new Users(id, name, email, country);
                 usersList.add(users);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return usersList;
+    }
+
+    @Override
+    public Users getUserId(int id) {
+        Users user = null;
+        String query = "{CALL get_user_by_id(?)}";
+
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(query);
+            callableStatement.setInt(1, id);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                user = new Users(name, email, country);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public void addUserStore(Users users) {
+        String query = "{CALL add_user(?,?,?)}";
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(query);
+            callableStatement.setString(1, users.getName());
+            callableStatement.setString(2,users.getEmail());
+            callableStatement.setString(3,users.getCountry());
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

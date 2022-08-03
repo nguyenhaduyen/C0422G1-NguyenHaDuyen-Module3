@@ -18,4 +18,8 @@ public interface IUserService {
     List<Users> findByCountry(String country);
 
     List<Users> sortByName ();
+
+    Users getUserId(int id);
+
+    void add1(Users user);
 }

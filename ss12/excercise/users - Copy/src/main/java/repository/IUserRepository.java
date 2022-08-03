@@ -2,6 +2,7 @@ package repository;
 
 import model.Users;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserRepository {
@@ -18,4 +19,8 @@ public interface IUserRepository {
     List<Users> findByCountry(String country);
 
     List<Users> sortByName();
+
+    Users getUserId (int id);
+
+    void addUserStore (Users users);
 }

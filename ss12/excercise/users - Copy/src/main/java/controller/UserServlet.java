@@ -34,6 +34,7 @@ public class UserServlet extends HttpServlet {
                 break;
             case "sort":
                 sort (request,response);
+
             default:
                 showList(request, response);
         }
@@ -76,7 +77,8 @@ public class UserServlet extends HttpServlet {
 
     private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Users users = userService.findById(id);
+//        Users users = userService.findById(id);
+        Users users = userService.getUserId(id);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/user/edit.jsp");
         request.setAttribute("user", users);
         try {
@@ -148,7 +150,8 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         Users users = new Users(name, email, country);
-        userService.add(users);
+//        userService.add(users);
+        userService.add1(users);
         showList(request, response);
     }
 }
