@@ -76,6 +76,7 @@ public class UserRepository implements IUserRepository {
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
+
                 String email = resultSet.getString("email");
                 String country = resultSet.getString("country");
                 user = new Users(id, name, email, country);
