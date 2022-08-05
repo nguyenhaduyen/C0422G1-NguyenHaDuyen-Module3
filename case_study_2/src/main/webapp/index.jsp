@@ -39,14 +39,32 @@
                         </div>
                         <div class="col-1"></div>
                         <div class="col-2">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Employee</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Employee
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                    <li><a class="dropdown-item" href="list_employee.jsp">List Employee</a></li>
+                                    <li><a class="dropdown-item" href="add_new_employee.jsp">
+                                        <button>Add New Employee</button>
+                                    </a></li>
+                                </ul>
                             </li>
                         </div>
                         <div class="col-1"></div>
                         <div class="col-2">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Customer</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Customer
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                    <li><a class="dropdown-item" href="list_customer.jsp">List</a></li>
+                                    <li><a class="dropdown-item" href="add_new_customer.jsp">
+                                        <button>Add New Customer</button>
+                                    </a></li>
+                                </ul>
                             </li>
                         </div>
                         <div class="col-1"></div>
@@ -65,8 +83,17 @@
                         <div class="col-1"></div>
                         <div class="col-1"></div>
                         <div class="col-1">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Contact</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Contact
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                    <li><a class="dropdown-item" href="list_contact.jsp">List Contact</a></li>
+                                    <li><a class="dropdown-item" href="add_new_contact.jsp">
+                                        <button>Add New Contact</button>
+                                    </a></li>
+                                </ul>
                             </li>
                         </div>
                     </ul>
