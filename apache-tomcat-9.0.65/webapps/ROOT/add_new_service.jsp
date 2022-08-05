@@ -57,111 +57,57 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <select>
-                    <option onchange="house" id="house1">House</option>
-                    <option onchange="room" id="room1">Room</option>
-                    <option onchange="villa" id="villa1">Villa</option>
+                <select onchange="service()" id="select">
+                    <option value="villa">Villa</option>
+                    <option value="house">House</option>
+                    <option value="room">Room</option>
                 </select>
             </div>
 
-            <form class="w-75 container-fluid" id="house">
+            <form class="w-75 container-fluid">
                 <div class="mb-3">
-                    <label  class="form-label">Diện tích sử dụng</label>
+                    <label class="form-label">Diện tích sử dụng</label>
                     <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Chi phí thuê</label>
-                    <input type="email" class="form-control"  aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Số lượng người tối đa</label>
                     <input type="email" class="form-control" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label  class="form-label">Kiểu thuê</label>
-                    <input type="email" class="form-control"aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Tiêu chuẩn phòng</label>
+                    <label class="form-label">Số lượng người tối đa</label>
                     <input type="email" class="form-control" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label  class="form-label">Số tầng</label>
+                    <label class="form-label">Kiểu thuê</label>
                     <input type="email" class="form-control" aria-describedby="emailHelp">
                 </div>
-                <div class="mb-3">
-                    <label  class="form-label">Mô tả tiện nghi khác</label>
+                <div class="mb-3" id="s1">
+                    <label class="form-label">Tiêu chuẩn phòng</label>
                     <input type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3" id="s2">
+                    <label class="form-label">Số tầng</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3" id="s3">
+                    <label class="form-label">Diện tích hồ bơi</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3" id="s4">
+                    <label class="form-label">Mô tả tiện nghi khác</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3" id="s5">
+                    <label class="form-label">Dịch vụ miễn phí đi kèm</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
-
-
-            <form class="w-75 container-fluid" id="villa">
-                <div class="mb-3">
-                    <label  class="form-label">Diện tích sử dụng</label>
-                    <input type="email" class="form-control"  aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Chi phí thuê</label>
-                    <input type="email" class="form-control"  aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Số lượng người tối đa</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Kiểu thuê</label>
-                    <input type="email" class="form-control"aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Tiêu chuẩn phòng</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Số tầng</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Diện tích hồ bơi</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Mô tả tiện nghi khác</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-            </form>
-
-
-
-            <form class="w-75 container-fluid" id="room">
-                <div class="mb-3">
-                    <label  class="form-label">Diện tích sử dụng</label>
-                    <input type="email" class="form-control"  aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Chi phí thuê</label>
-                    <input type="email" class="form-control"  aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Số lượng người tối đa</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Kiểu thuê</label>
-                    <input type="email" class="form-control"aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">Dịch vụ miễn phí đi kèm</label>
-                    <input type="email" class="form-control" aria-describedby="emailHelp">
-                </div>
-            </form>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
         </div>
     </div>
 </div>
@@ -172,14 +118,31 @@
 
 
 <script>
-    function house() {
-        document.getElementById("house").innerHTML = "str";
-    }
-    function villa() {
-        document.getElementById("villa").innerHTML = "str";
-    }
-    function room() {
-        document.getElementById("room").innerHTML = "str";
+    function service() {
+        let type = document.getElementById("select").value;
+        switch (type) {
+            case "villa":
+                document.getElementById("s1").style.display = "block"
+                document.getElementById("s2").style.display = "block"
+                document.getElementById("s3").style.display = "block"
+                document.getElementById("s4").style.display = "block"
+                document.getElementById("s5").style.display = "none"
+                break;
+            case "house":
+                document.getElementById("s1").style.display = "block"
+                document.getElementById("s2").style.display = "block"
+                document.getElementById("s3").style.display = "none"
+                document.getElementById("s4").style.display = "block"
+                document.getElementById("s5").style.display = "none"
+                break;
+            case "room":
+                document.getElementById("s1").style.display = "none"
+                document.getElementById("s2").style.display = "none"
+                document.getElementById("s3").style.display = "none"
+                document.getElementById("s4").style.display = "none"
+                document.getElementById("s5").style.display = "block"
+                break;
+        }
     }
 </script>
 </html>
