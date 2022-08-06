@@ -45,8 +45,8 @@
                                     Employee
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                    <li><a class="dropdown-item" href="list_employee.jsp">List Employee</a></li>
-                                    <li><a class="dropdown-item" href="add_new_employee.jsp">
+                                    <li><a class="dropdown-item" href="view/employee/list_employee.jsp">List Employee</a></li>
+                                    <li><a class="dropdown-item" href="view/employee/add_new_employee.jsp">
                                         <button>Add New Employee</button>
                                     </a></li>
                                 </ul>
@@ -60,8 +60,8 @@
                                     Customer
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                                    <li><a class="dropdown-item" href="list_customer.jsp">List</a></li>
-                                    <li><a class="dropdown-item" href="add_new_customer.jsp">
+                                    <li><a class="dropdown-item" href="view/customer/list_customer.jsp">List</a></li>
+                                    <li><a class="dropdown-item" href="view/customer/add_new_customer.jsp">
                                         <button>Add New Customer</button>
                                     </a></li>
                                 </ul>
@@ -74,8 +74,8 @@
                                 Service
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="list_service.jsp">List</a></li>
-                                <li><a class="dropdown-item" href="add_new_service.jsp">
+                                <li><a class="dropdown-item" href="view/service/list_service.jsp">List</a></li>
+                                <li><a class="dropdown-item" href="view/service/add_new_service.jsp">
                                     <button>Add New Service</button>
                                 </a></li>
                             </ul>
@@ -89,8 +89,8 @@
                                     Contact
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                    <li><a class="dropdown-item" href="list_contact.jsp">List Contact</a></li>
-                                    <li><a class="dropdown-item" href="add_new_contact.jsp">
+                                    <li><a class="dropdown-item" href="view/contact/list_contact.jsp">List Contact</a></li>
+                                    <li><a class="dropdown-item" href="view/contact/add_new_contact.jsp">
                                         <button>Add New Contact</button>
                                     </a></li>
                                 </ul>

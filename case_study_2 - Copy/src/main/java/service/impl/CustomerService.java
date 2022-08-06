@@ -1,7 +1,6 @@
 package service.impl;
 
-import model.Customer;
-import repository.CustomerRepository;
+import customer.Customer;
 
 import java.util.List;
 
