@@ -3,15 +3,15 @@ package customer.model;
 import java.time.LocalDate;
 
 public class Customer {
-    int customerCode;
-    String name;
-    String dateOfBirth;
-    boolean gender;
-    String identify;
-    String phoneNumber;
-    String email;
-    String address;
-    int typeCustomerCode;
+    private int customerCode;
+    private String name;
+    private String dateOfBirth;
+    private boolean gender;
+    private String identify;
+    private String phoneNumber;
+    private String email;
+    private String address;
+    private int typeCustomerCode;
 
     public Customer(int customerCode, String name, String dateOfBirth, boolean gender, String identify, String phoneNumber, String email, String address, int typeCustomerCode) {
         this.customerCode = customerCode;

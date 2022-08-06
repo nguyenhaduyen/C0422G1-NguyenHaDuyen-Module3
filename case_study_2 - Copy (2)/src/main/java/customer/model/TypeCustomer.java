@@ -1,8 +1,8 @@
 package customer.model;
 
 public class TypeCustomer {
-    int typeCustomerCode;
-    String nameTypeCustomer;
+    private int typeCustomerCode;
+    private String nameTypeCustomer;
 
     public TypeCustomer(int typeCustomerCode, String nameTypeCustomer) {
         this.typeCustomerCode = typeCustomerCode;

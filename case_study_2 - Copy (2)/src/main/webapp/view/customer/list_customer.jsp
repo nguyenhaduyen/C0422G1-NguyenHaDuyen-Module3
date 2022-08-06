@@ -197,7 +197,7 @@
     });
 })
 </script>
-<script>
+<script>7
     function delete1 (id){
         document.getElementById("deleteId").value = id;
         document.getElementById("confirm").innerHTML = '<a href="/customer?action=delete&id='+id+'">yes</a>'
