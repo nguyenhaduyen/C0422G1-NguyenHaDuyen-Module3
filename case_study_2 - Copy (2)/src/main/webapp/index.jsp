@@ -25,7 +25,7 @@
 
 <div class="row">
     <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-success p-0 fixed-top">
             <div class="col-1"></div>
             <div class="col-1"><img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" width="45px">
             </div>
@@ -34,13 +34,13 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
                         <div class="col-2">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown2" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Employee
                                 </a>
@@ -55,7 +55,7 @@
                         <div class="col-1"></div>
                         <div class="col-2">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown1" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Customer
                                 </a>
@@ -69,13 +69,13 @@
                         </div>
                         <div class="col-1"></div>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Service
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="service/list_service.jsp">List</a></li>
-                                <li><a class="dropdown-item" href="service/add_new_service.jsp">
+                                <li><a class="dropdown-item" href="/facility">List</a></li>
+                                <li><a class="dropdown-item" href="/facility?action=add">
                                     <button>Add New Service</button>
                                 </a></li>
                             </ul>
@@ -84,7 +84,7 @@
                         <div class="col-1"></div>
                         <div class="col-1">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown3" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Contact
                                 </a>
