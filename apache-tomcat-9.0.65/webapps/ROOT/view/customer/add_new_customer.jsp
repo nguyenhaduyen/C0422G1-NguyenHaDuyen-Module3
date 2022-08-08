@@ -23,7 +23,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
@@ -101,10 +101,11 @@
     </div>
 </div>
 <h3 class="text-center mt-3">ADD NEW CUSTOMER</h3>
-<form class="w-25 container-fluid shadow" method="post" action="/customer?action=add">
-    <div class="mb-3">
+<form class="w-25 container-fluid shadow mt3" method="post" action="/customer?action=add">
+    <div class="mb-3 mt-3">
         <label class="form-label">Họ tên Khách Hàng</label>
-        <input type="text" required class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" name="name">
+        <input type="text" required class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" name="name" value="${customer.name}">
+        <p class="text-danger">${errors.get("name")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Ngày Sinh</label>
@@ -119,15 +120,18 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Số CMND</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" name="cmnd">
+        <input type="text" class="form-control" aria-describedby="emailHelp" name="cmnd" value="${customer.identify}">
+        <p class="text-danger">${errors.get("cmnd")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Số Điện Thoại</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" name="sdt">
+        <input type="text" class="form-control" aria-describedby="emailHelp" name="sdt" value="${customer.phoneNumber}">
+        <p class="text-danger">${errors.get("phone")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" aria-describedby="emailHelp" name="email">
+        <input type="text" class="form-control" aria-describedby="emailHelp" name="email" value="${customer.email}">
+        <p class="text-danger">${errors.get("email")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Địa Chỉ</label>
@@ -144,7 +148,7 @@
         </select>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>
 </body>

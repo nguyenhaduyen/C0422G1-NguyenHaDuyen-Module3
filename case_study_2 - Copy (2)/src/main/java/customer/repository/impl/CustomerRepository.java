@@ -18,6 +18,7 @@ public class CustomerRepository implements ICustomerRepository {
     private final String INSERT = "insert into khach_hang(ho_ten,ngay_sinh,gioi_tinh,so_cmnd,so_dien_thoai,email,dia_chi,ma_loai_khach) value (?,?,?,?,?,?,?,?)";
     private final String FIND_ID = "select * from khach_hang where ma_khach_hang =?";
     private final String DELETE = "delete from khach_hang where ma_khach_hang = ?";
+    private final String SEARCH = "select * from khach_hang where ho_ten like ? and ma_khach_hang like ?";
 
 
     @Override
@@ -120,5 +121,32 @@ public class CustomerRepository implements ICustomerRepository {
             e.printStackTrace();
         }
         return customer;
+    }
+
+    @Override
+    public List<Customer> search(String name, String customerCode) {
+        List<Customer> customerList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH);
+            preparedStatement.setString(1,'%'+name+'%');
+            preparedStatement.setString(2,'%'+customerCode+'%');
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int code = resultSet.getInt("ma_khach_hang");
+                String customerName = resultSet.getString("ho_ten");
+                String dateOfBirth = resultSet.getString("ngay_sinh");
+                boolean gender = resultSet.getBoolean("gioi_tinh");
+                String identify = resultSet.getString("so_cmnd");
+                String phoneNumber = resultSet.getString("so_dien_thoai");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("dia_chi");
+                int typeCustomerCode = resultSet.getInt("ma_loai_khach");
+                customerList.add(new Customer(code, customerName, dateOfBirth, gender, identify, phoneNumber, email, address, typeCustomerCode));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customerList;
     }
 }

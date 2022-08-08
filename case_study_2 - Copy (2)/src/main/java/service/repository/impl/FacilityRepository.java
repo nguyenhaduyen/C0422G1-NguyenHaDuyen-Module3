@@ -34,7 +34,7 @@ public class FacilityRepository implements IFacilityRepository {
                 String standardRoom = resultSet.getString("tieu_chuan_phong");
                 String descriptionOtherConvenience = resultSet.getString("mo_ta_tien_nghi_khac");
                 int poolArea = resultSet.getInt("dien_tich_ho_boi");
-                int numberOfFloor = resultSet.getInt("so_tang");
+                String numberOfFloor = resultSet.getString("so_tang");
                 String facilityFree = resultSet.getString("dich_vu_mien_phi_di_kem");
                 int rentTypeId = resultSet.getInt("ma_kieu_thue");
                 int codeTypeService = resultSet.getInt("ma_loai_dich_vu");
@@ -58,7 +58,7 @@ public class FacilityRepository implements IFacilityRepository {
             preparedStatement.setString(5, facility.getStandardRoom());
             preparedStatement.setString(6, facility.getDescriptionOtherConvenience());
             preparedStatement.setInt(7, facility.getPoolArea());
-            preparedStatement.setInt(8, facility.getNumberOfFloor());
+            preparedStatement.setString(8, facility.getNumberOfFloor());
             preparedStatement.setString(9, facility.getFacilityFree());
             preparedStatement.setInt(10, facility.getRentTypeId());
             preparedStatement.setInt(11, facility.getCodeTypeService());
@@ -92,7 +92,7 @@ public class FacilityRepository implements IFacilityRepository {
             preparedStatement.setString(5, facility.getStandardRoom());
             preparedStatement.setString(6, facility.getDescriptionOtherConvenience());
             preparedStatement.setInt(7, facility.getPoolArea());
-            preparedStatement.setInt(8, facility.getNumberOfFloor());
+            preparedStatement.setString(8, facility.getNumberOfFloor());
             preparedStatement.setString(9, facility.getFacilityFree());
             preparedStatement.setInt(10, facility.getRentTypeId());
             preparedStatement.setInt(11, facility.getCodeTypeService());
@@ -119,7 +119,7 @@ public class FacilityRepository implements IFacilityRepository {
                 String standardRoom = resultSet.getString("tieu_chuan_phong");
                 String descriptionOtherConvenience = resultSet.getString("mo_ta_tien_nghi_khac");
                 int poolArea = resultSet.getInt("dien_tich_ho_boi");
-                int numberOfFloor = resultSet.getInt("so_tang");
+                String numberOfFloor = resultSet.getString("so_tang");
                 String facilityFree = resultSet.getString("dich_vu_mien_phi_di_kem");
                 int rentTypeId = resultSet.getInt("ma_kieu_thue");
                 int codeTypeService = resultSet.getInt("ma_loai_dich_vu");

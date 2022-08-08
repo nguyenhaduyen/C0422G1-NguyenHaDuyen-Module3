@@ -24,7 +24,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>

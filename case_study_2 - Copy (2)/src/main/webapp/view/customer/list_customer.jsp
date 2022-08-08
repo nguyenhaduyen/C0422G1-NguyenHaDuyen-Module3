@@ -12,7 +12,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="view/bootstrap-5.0.2-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../style/datatables/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap5.min.css" />
 </head>
 <body>
 <div class="row">
@@ -26,7 +26,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
@@ -105,14 +105,29 @@
 </div>
 <div class="row text-center mt-3">
     <h3>Trang danh sách khách hàng</h3></div>
-<table class="table table-striped table-hover mt-3 w-auto m-auto" id="myTable">
+<form class="d-flex w-50 container-fluid" action="/customer" method="get">
+    <input class="form-control me-2 mt-3 rounded-end  " type="search"
+           aria-label="Search"
+           width="100%" hidden name="action" value="search">
+
+    <input class="form-control me-2 mt-3 rounded-end" type="search" placeholder="nhập tên"
+           aria-label="Search" type="search" name="name"
+           width="100%">
+
+    <input class="form-control me-2 mt-3 rounded-end  " type="search" placeholder="nhập id"
+           aria-label="Search" name="id"
+           width="100%">
+
+    <button class="btn btn-outline-success mt-3">Search</button>
+</form>
+<table id="tableStudent" class="table table-striped table-hover mt-3 w-75 m-auto" >
     <thead class="table-primary">
-    <th scope="col">Mã Khách Hàng</th>
+    <th scope="col">Mã KH</th>
     <th scope="col">Họ Tên</th>
     <th scope="col">Ngày Sinh</th>
     <th scope="col">Giới Tính</th>
     <th scope="col">Số CMND</th>
-    <th scope="col">Số Điện Thoại</th>
+    <th scope="col">SĐT</th>
     <th scope="col">Email</th>
     <th scope="col">Địa Chỉ</th>
     <th scope="col">Tên loại khách</th>
@@ -187,23 +202,26 @@
         </div>
     </div>
 </div>
-<script>$(document).ready(function () {
-    $('#myTable').dataTable({
-        "dom": 'lrtip',
-        "lengthChange": false,
-        "pageLength": 5
-    });
-})
-</script>
-<script>
-    function delete1 (id){
-        document.getElementById("deleteId").value = id;
-        document.getElementById("confirm").innerHTML = '<a href="/customer?action=delete&id='+id+'">yes</a>'
-    }
 
-</script>
+
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap5.min.js"></script>
 <script src="view/bootstrap-5.0.2-dist/jquery/jquery-3.6.0.min.js"></script>
 <script src="view/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
-<script src="../style/datatables/js/jquery.dataTables.min.js"></script>
-<script src="../style/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    function delete1(id) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("confirm").innerHTML = '<a href="/customer?action=delete&id='+id +'">yes</a>'
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        $('#tableStudent').dataTable( {
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        } );
+    } );
+</script>
 </html>

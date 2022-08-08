@@ -9,11 +9,12 @@ public  class Facility {
     private String standardRoom;
     private String descriptionOtherConvenience;
     private int poolArea;
-    private int numberOfFloor;
+    private String numberOfFloor;
     private String facilityFree;
     private int rentTypeId;
     private int codeTypeService;
-    public Facility(int serviceCode, String serviceName, int area, double cost, int maxPeople, String standardRoom, String descriptionOtherConvenience, int poolArea, int numberOfFloor, String facilityFree, int rentTypeId, int codeTypeService) {
+
+    public Facility(int serviceCode, String serviceName, int area, double cost, int maxPeople, String standardRoom, String descriptionOtherConvenience, int poolArea, String numberOfFloor, String facilityFree, int rentTypeId, int codeTypeService) {
         this.serviceCode = serviceCode;
         this.serviceName = serviceName;
         this.area = area;
@@ -28,7 +29,7 @@ public  class Facility {
         this.codeTypeService = codeTypeService;
     }
 
-    public Facility(String serviceName, int area, double cost, int maxPeople, String standardRoom, String descriptionOtherConvenience, int poolArea, int numberOfFloor, String facilityFree, int rentTypeId, int codeTypeService) {
+    public Facility(String serviceName, int area, double cost, int maxPeople, String standardRoom, String descriptionOtherConvenience, int poolArea, String numberOfFloor, String facilityFree, int rentTypeId, int codeTypeService) {
         this.serviceName = serviceName;
         this.area = area;
         this.cost = cost;
@@ -106,11 +107,11 @@ public  class Facility {
         this.poolArea = poolArea;
     }
 
-    public int getNumberOfFloor() {
+    public String getNumberOfFloor() {
         return numberOfFloor;
     }
 
-    public void setNumberOfFloor(int numberOfFloor) {
+    public void setNumberOfFloor(String numberOfFloor) {
         this.numberOfFloor = numberOfFloor;
     }
 

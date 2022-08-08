@@ -34,7 +34,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
@@ -294,7 +294,7 @@
     </div>
 </div>
 <footer>
-    <div class="row mt-5 bg bg-light">
+    <div class="row mt-5 bg bg-success">
         <div class="col-2 mt-3"><p class="float-end">Follow this page</p></div>
         <div class="col-9 mt-3">
             <img

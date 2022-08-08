@@ -11,6 +11,9 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="view/bootstrap-5.0.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap5.min.css" />
+
+
 </head>
 <body>
 <div class="row">
@@ -24,18 +27,20 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
                         <div class="col-2">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown2" role="button"
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown2"
+                                   role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Employee
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                    <li><a class="dropdown-item" href="employee/list_employee.jsp">List Employee</a></li>
+                                    <li><a class="dropdown-item" href="employee/list_employee.jsp">List Employee</a>
+                                    </li>
                                     <li><a class="dropdown-item" href="employee/add_new_employee.jsp">
                                         <button>Add New Employee</button>
                                     </a></li>
@@ -45,7 +50,8 @@
                         <div class="col-1"></div>
                         <div class="col-2">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown1" role="button"
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown1"
+                                   role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Customer
                                 </a>
@@ -74,7 +80,8 @@
                         <div class="col-1"></div>
                         <div class="col-1">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown3" role="button"
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown3"
+                                   role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Contact
                                 </a>
@@ -105,7 +112,7 @@
 <div class="row text-center mt-3">
     <h3>Trang danh sách các dịch vụ</h3>
 </div>
-<table class="table table-striped table-hover mt-3 w-auto m-auto">
+<table id="tableStudent" class="table table-striped table-hover mt-3 w-auto m-auto" id="tableService">
     <thead class="table-primary">
     <th scope="col">Mã dịch vụ</th>
     <th scope="col">Tên dịch vụ</th>
@@ -156,7 +163,6 @@
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                     </svg>
                 </button>
-
             </td>
             <td>
                 <a href="/facility?action=update&id=${facility.serviceCode}">
@@ -195,15 +201,28 @@
     </div>
 </div>
 
+
 </body>
-<script>
-    function delete1 (id){
-        document.getElementById("deleteId").value = id;
-        document.getElementById("confirm").innerHTML = '<a class="text-light text-decoration-none" href="/facility?action=delete&id='+id+'">Yes</a>'
-    }
-</script>
+
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap5.min.js"></script>
 <script src="view/bootstrap-5.0.2-dist/jquery/jquery-3.6.0.min.js"></script>
 <script src="view/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
 
-
+<script>
+    function delete1(id) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("confirm").innerHTML = '<a class="text-light text-decoration-none" href="/facility?action=delete&id=' + id + '">Yes</a>'
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        $('#tableStudent').dataTable( {
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 3
+        } );
+    } );
+</script>
 </html>

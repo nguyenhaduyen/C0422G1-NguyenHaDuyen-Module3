@@ -12,6 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -35,8 +36,28 @@ public class CustomerServlet extends HttpServlet {
             case "delete":
                 delete (request,response);
                 break;
+            case "search":
+                search(request,response);
             default:
                 showListCustomer(request, response);
+        }
+
+    }
+
+    private void search(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String id = request.getParameter("id");
+        List<Customer> customerList = customerService.search(name,id);
+        List<TypeCustomer> typeCustomerList = typeCustomerService.findAll();
+        request.setAttribute("typeCustomer", typeCustomerList);
+        request.setAttribute("customer",customerList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/list_customer.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -65,7 +86,7 @@ public class CustomerServlet extends HttpServlet {
         showListCustomer(request,response);
     }
 
-    private void saveFormAdd(HttpServletRequest request, HttpServletResponse response) {
+    private void saveFormAdd(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String dateOfBirth = request.getParameter("date");
         boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
@@ -74,8 +95,22 @@ public class CustomerServlet extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("dc");
         int typeCustomer = Integer.parseInt(request.getParameter("typeCustomer"));
-        customerService.add(new Customer(name, dateOfBirth, gender, identify, phoneNumber, email, address, typeCustomer));
-        showListCustomer(request, response);
+        Customer customer = new Customer(name, dateOfBirth, gender, identify, phoneNumber, email, address, typeCustomer);
+        Map<String, String> errors = customerService.checkValidateCustomer(customer);
+        if (errors.isEmpty()) {
+            customerService.add(customer);
+            showListCustomer(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/add_new_customer.jsp");
+            request.setAttribute("errors", errors);
+            request.setAttribute("customer", customer);
+            try {
+                requestDispatcher.forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
 
@@ -120,8 +155,23 @@ public class CustomerServlet extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("dc");
         int typeCustomer = Integer.parseInt(request.getParameter("typeCustomer"));
-        customerService.update(new Customer(customerCode, name, dateOfBirth, gender, identify, phoneNumber, email, address, typeCustomer));
-        showListCustomer(request, response);
+        Customer customer = new Customer(customerCode, name, dateOfBirth, gender, identify, phoneNumber, email, address, typeCustomer);
+        Map<String, String> errors = customerService.checkValidateCustomer(customer);
+        if (errors.isEmpty()) {
+            customerService.update(customer);
+            showListCustomer(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/update_customer.jsp");
+            request.setAttribute("errors", errors);
+            request.setAttribute("customer", customer);
+            try {
+                requestDispatcher.forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void showFormAdd(HttpServletRequest request, HttpServletResponse response) {

@@ -24,7 +24,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
@@ -114,7 +114,8 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Tên dịch vụ</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" name="serviceName">
+        <input type="text" class="form-control" aria-describedby="emailHelp" name="serviceName" value="${facility.serviceName}">
+        <p class="text-danger">${errors.get('name')}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Diện tích sử dụng</label>
@@ -143,6 +144,7 @@
     <div class="mb-3" id="s2" style="display: none ">
         <label class="form-label">Số tầng</label>
         <input type="text" class="form-control" aria-describedby="emailHelp" name="floor" value="0">
+        <p class="text-danger">${errors.get("floor")}</p>
     </div>
     <div class="mb-3" id="s5" style="display: none ">
         <label class="form-label">Dịch vụ miễn phí đi kèm</label>

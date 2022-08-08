@@ -15,6 +15,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "FacilityServlet", urlPatterns = "/facility")
 public class FacilityServlet extends HttpServlet {
@@ -73,7 +74,7 @@ public class FacilityServlet extends HttpServlet {
         String standardRoom = request.getParameter("tc");
         String descriptionOtherConvenience = request.getParameter("mota");
         int poolArea = Integer.parseInt(request.getParameter("pool"));
-        int numberOfFloor = Integer.parseInt(request.getParameter("floor"));
+        String numberOfFloor = request.getParameter("floor");
         String facilityFree = request.getParameter("dvmp");
         int rentTypeId = Integer.parseInt(request.getParameter("kieuThue"));
         int codeTypeService = Integer.parseInt(request.getParameter("sv"));
@@ -116,17 +117,31 @@ public class FacilityServlet extends HttpServlet {
         String standardRoom = request.getParameter("standard");
         String descriptionOtherConvenience = request.getParameter("other");
         int poolArea = Integer.parseInt(request.getParameter("pool"));
-        int numberOfFloor = Integer.parseInt(request.getParameter("floor"));
+        String numberOfFloor = request.getParameter("floor");
         String facilityFree = request.getParameter("serviceFree");
         int rentTypeId = Integer.parseInt(request.getParameter("typeRent"));
         int codeTypeService = Integer.parseInt(request.getParameter("service"));
         Facility facility = new Facility(serviceName, area, cost, maxPeople, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloor, facilityFree, rentTypeId, codeTypeService);
-        facilityService.add(facility);
-        showFacility(request, response);
+        Map<String, String> errors = facilityService.checkValidateFacility(facility);
+        if (errors.isEmpty()) {
+            facilityService.add(facility);
+            showFacility(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/service/add_new_service.jsp");
+            request.setAttribute("errors", errors);
+            request.setAttribute("facility", facility);
+            try {
+                requestDispatcher.forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void showFormAdd(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/add_new_service.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/service/add_new_service.jsp");
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {

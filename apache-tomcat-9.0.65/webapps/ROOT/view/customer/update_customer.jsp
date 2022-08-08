@@ -24,7 +24,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <div class="col-1">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
                             </li>
                         </div>
                         <div class="col-1"></div>
@@ -111,6 +111,7 @@
         <label class="form-label">Họ tên Khách Hàng</label>
         <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" name="name"
                value="${customer.name}">
+        <p class="text-danger">${errors.get("name")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Ngày Sinh</label>
@@ -140,14 +141,18 @@
     <div class="mb-3">
         <label class="form-label">Số CMND</label>
         <input type="text" class="form-control" aria-describedby="emailHelp" name="cmnd" value="${customer.identify}">
+        <p class="text-danger">${errors.get("cmnd")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Số Điện Thoại</label>
         <input type="text" class="form-control" aria-describedby="emailHelp" name="sdt" value="${customer.phoneNumber}">
+        <p class="text-danger">${errors.get("phone")}</p>
     </div>
     <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="text" class="form-control" aria-describedby="emailHelp" name="email" value="${customer.email}">
+        <p class="text-danger">${errors.get("email")}</p>
+
     </div>
     <div class="mb-3">
         <label class="form-label">Địa Chỉ</label>
