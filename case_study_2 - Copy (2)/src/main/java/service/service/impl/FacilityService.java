@@ -47,13 +47,14 @@ public class FacilityService implements IFacilityService {
         } else {
             mapErrors.put("name", "Ô không được để trống");
         }
-        if (!facility.getNumberOfFloor().isEmpty()) {
-            if (!facility.getNumberOfFloor().matches("^[1-9][0-9]*$")) {
-                mapErrors.put("floor", "Số tầng phải là số nguyên dương");
-            }
-        } else {
-            mapErrors.put("floor", "Ô không được để trống");
+        if (!facility.getNumberOfFloor().matches("[0-9][0-9]*")) {
+            mapErrors.put("floor", "Số tầng phải là số nguyên dương");
         }
         return mapErrors;
+    }
+
+    @Override
+    public List<Facility> search(String name, String id) {
+        return facilityRepository.search(name, id);
     }
 }

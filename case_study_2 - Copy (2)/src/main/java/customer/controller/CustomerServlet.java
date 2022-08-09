@@ -44,6 +44,23 @@ public class CustomerServlet extends HttpServlet {
 
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "add":
+                saveFormAdd(request, response);
+                break;
+            case "update":
+                saveFormUpdate(request, response);
+                break;
+        }
+    }
+
     private void search(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String id = request.getParameter("id");
@@ -60,24 +77,6 @@ public class CustomerServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-    }
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "add":
-                saveFormAdd(request, response);
-                break;
-            case "update":
-                saveFormUpdate(request, response);
-                break;
-        }
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) {
@@ -161,7 +160,9 @@ public class CustomerServlet extends HttpServlet {
             customerService.update(customer);
             showListCustomer(request, response);
         } else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/update_customer.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/update_customer.jsp");
+            List<TypeCustomer> typeCustomer1 = typeCustomerService.findAll();
+            request.setAttribute("typeCustomer",typeCustomer1);
             request.setAttribute("errors", errors);
             request.setAttribute("customer", customer);
             try {

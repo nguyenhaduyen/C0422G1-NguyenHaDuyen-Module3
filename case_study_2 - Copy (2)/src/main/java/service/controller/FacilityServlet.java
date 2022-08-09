@@ -35,16 +35,17 @@ public class FacilityServlet extends HttpServlet {
                 showFormAdd(request, response);
                 break;
             case "update":
-                showFormUpdate(request,response);
+                showFormUpdate(request, response);
                 break;
             case "delete":
-                delete (request,response);
+                delete(request, response);
                 break;
+            case "search":
+                search(request,response);
             default:
                 showFacility(request, response);
         }
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -65,6 +66,26 @@ public class FacilityServlet extends HttpServlet {
         }
     }
 
+    private void search(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String id = request.getParameter("id");
+        List<Facility> facilityList = facilityService.search(name,id);
+        List<TypeRent> typeRentList = typeRentService.findAll();
+        List<TypeService> typeServiceList = typeServiceService.findAll();
+        request.setAttribute("facility",facilityList);
+        request.setAttribute("typeRent",typeRentList);
+        request.setAttribute("typeService",typeServiceList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/list_service.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private void saveFormUpdate(HttpServletRequest request, HttpServletResponse response) {
         int serviceCode = Integer.parseInt(request.getParameter("serviceCode"));
         String serviceName = request.getParameter("serviceName");
@@ -78,9 +99,28 @@ public class FacilityServlet extends HttpServlet {
         String facilityFree = request.getParameter("dvmp");
         int rentTypeId = Integer.parseInt(request.getParameter("kieuThue"));
         int codeTypeService = Integer.parseInt(request.getParameter("sv"));
-        Facility facility = new Facility(serviceCode,serviceName,area,cost,maxPeople,standardRoom,descriptionOtherConvenience,poolArea,numberOfFloor,facilityFree,rentTypeId,codeTypeService);
-        facilityService.update(facility);
-        showFacility(request,response);
+        Facility facility = new Facility(serviceCode, serviceName, area, cost, maxPeople, standardRoom, descriptionOtherConvenience, poolArea, numberOfFloor, facilityFree, rentTypeId, codeTypeService);
+        Map<String, String> errors = facilityService.checkValidateFacility(facility);
+        if (errors.isEmpty()) {
+            facilityService.update(facility);
+            showFacility(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/service/update_service.jsp");
+            request.setAttribute("errors", errors);
+            request.setAttribute("facility", facility);
+            List<TypeRent> typeRentList = typeRentService.findAll();
+            List<TypeService> typeServiceList = typeServiceService.findAll();
+            request.setAttribute("typeRentList", typeRentList);
+            request.setAttribute("typeService", typeServiceList);
+            try {
+                requestDispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        showFacility(request, response);
 
     }
 
@@ -89,12 +129,12 @@ public class FacilityServlet extends HttpServlet {
         Facility facility = facilityService.findById(id);
         List<TypeRent> typeRentList = typeRentService.findAll();
         List<TypeService> typeServiceList = typeServiceService.findAll();
-        request.setAttribute("facility",facility);
-        request.setAttribute("typeRentList",typeRentList);
-        request.setAttribute("typeService",typeServiceList);
+        request.setAttribute("facility", facility);
+        request.setAttribute("typeRentList", typeRentList);
+        request.setAttribute("typeService", typeServiceList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/update_service.jsp");
         try {
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -106,7 +146,7 @@ public class FacilityServlet extends HttpServlet {
     private void delete(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         facilityService.delete(id);
-        showFacility(request,response);
+        showFacility(request, response);
     }
 
     private void saveFormAdd(HttpServletRequest request, HttpServletResponse response) {
@@ -131,7 +171,7 @@ public class FacilityServlet extends HttpServlet {
             request.setAttribute("errors", errors);
             request.setAttribute("facility", facility);
             try {
-                requestDispatcher.forward(request,response);
+                requestDispatcher.forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
